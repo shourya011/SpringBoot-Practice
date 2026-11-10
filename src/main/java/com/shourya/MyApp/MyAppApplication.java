@@ -9,12 +9,14 @@ public class MyAppApplication {
 
 	public static void main(String[] args) {
 
+		//.class gives the meta data of the class like variables,members and methods and other things as well
+		//used to awake to IOC container
 		ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
-		OrderService order = context.getBean(OrderService.class);
-		order.placeOrder();
 
-		User obj = context.getBean(User.class);
-		System.out.println(obj.getName());
+		OrderService obj = context.getBean(OrderService.class);
+
+		obj.placeOrder();
+
 
 	}
 }

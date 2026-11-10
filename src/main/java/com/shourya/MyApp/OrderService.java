@@ -1,26 +1,27 @@
 package com.shourya.MyApp;
 
-import com.shourya.MyApp.payments.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
 public class OrderService {
-    private PaymentService payment;
 
+    private PaymentService paymentService;
 
-//    OrderService(@Qualifier("upi") PaymentService payment){}
-    @Autowired //optional
-    OrderService(PaymentService payment){
-        this.payment = payment;
+    public OrderService(PaymentService paymentService) {
+        this.paymentService = paymentService;
     }
 
-    OrderService(){
+    public void placeOrder() {
+        paymentService.pay();
 
+        //its his responsibility
+        getOrderDetails();
+
+        System.out.println("Order Placed");
     }
-    void placeOrder(){
-        payment.pay();
-        System.out.println("Order has been Placed");
+
+    public void getOrderDetails(){
+        System.out.println("Order Details");
     }
 }
